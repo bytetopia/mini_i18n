@@ -1,0 +1,29 @@
+{
+  "name": "minii18n.js",
+  "version": "1.0.1",
+  "description": "Simple HTML i18n tool.",
+  "main": "dist/minii19n.min.js",
+  "homepage": "https://github.com/bytetopia/mini_i18n/",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:min": "umd Minii18n src/minii18n.js | uglifyjs -mc | bannerjs -o > dist/minii18n.min.js",
+    "build:dist": "umd Minii18n src/minii18n.js | bannerjs -m | uglifyjs -b beautify=true --comments 'all' > dist/minii18n.js ",
+    "build": "npm run build:min && npm run build:dist",
+    "watch": "onchange 'src/minii18n.js' -v -- npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytetopia/translater.js"
+  },
+  "author": "dongxing xin <hello@dongxing.xin>",
+  "license": "MIT",
+  "devDependencies": {
+    "bannerjs": "^1.0.1",
+    "onchange": "^2.4.0",
+    "uglify-js": "^2.6.2",
+    "umd": "^3.0.1"
+  }
+}

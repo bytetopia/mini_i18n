@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple translation tools.<!--{jp} 簡単な翻訳ツール--><!-- none简单的翻译工具--><!--{cn} 简单的翻译工具--></title>
+    <meta charset="utf-8">
+    <style type="text/css">
+    body,html,ul,li{margin: 0;padding: 0;font-size: 14px; }
+    body,html{height: 100%;font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",SimSun,sans-serif;}
+    table{height: 100%;width: 100%;}
+    a{text-decoration: none;}
+    header{
+        background-color: #409D76;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: #fff;
+    }
+    .header h1{font-size: 55px;margin: 0 0 20px 0;}
+    .header h1 span{font-size: 55px;color: #17533A;font-weight: bold;;}
+    .btn {
+        display: inline-block;
+        padding: 4px 15px;
+        cursor: pointer;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+        border-radius: 4px;
+        margin: 0 5px;
+
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+        transition: all .3s ease;
+    }
+    .btn:hover,.active{
+        background: #216F4E;
+        color: #fff;
+    }
+    .btn:active{
+        background: #323232;
+        color: #fff;
+    }
+    .describe{
+        padding: 30px 15px;
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 23px;
+    }
+    .fork-github {position: absolute; right: 0; top: 0;z-index: 9;}
+    </style>
+</head>
+<body>
+
+<img 
+    alt="image" 
+    alt-cn="图片" 
+    alt-jp="画像" 
+    
+    title="image2" 
+    title-cn="图片2" 
+    title-jp="画像2" 
+
+    src="../img/imgae.jpg" 
+    data-lang-cn="../img/imgae_cn.jpg" 
+    data-lang-jp="../img/imgae_jp.jpg"/>
+
+
+<input type="text" placeholder="like this?"  placeholder-cn="像这样？"  />
+<input type="button" value="button" value-cn="按钮" value-jp="按钮日本"  />
+
+<header>
+<table class="header">
+    <tbody>
+        <tr>
+            <td>
+    <h1>Translater<span>.JS</span></h1>
+    <div id="btns">
+        <a class="btn active" onclick="setlang('default',this)" href="javascript:;">English</a><a 
+        class="btn" onclick="setlang('jp',this)" href="javascript:;">日本語</a><a 
+        class="btn" onclick="setlang('cn',this)" href="javascript:;">中文</a> 
+    </div>
+                
+    <div class="describe">
+        This is a use of HTML comments page translation solution. For a small amount of static pages, this solution is more simple. it has no dependents, Compression only (4KB)
+        <!--{jp}これはHTML注釈のページの翻訳の解決方案を利用します。少量の静的なページに対して、この解決方案はもっと簡単です。頼りなくて，圧縮後は（~4kb）-->
+        <!--{cn}这是一个利用HTML注释的页面翻译解决方案。对于少量的静态页面，这种解决方案显得更简单。它没有依赖，压缩后只有(~4kb)。-->
+    </div> 
+            </td>
+        </tr>
+    </tbody>
+</table> 
+
+</header>
+
+
+<script type="text/javascript" src="../dist/minii18n.js"></script>
+<script type="text/javascript">
+    var Translater = new Translater();
+
+    var btns = document.getElementById('btns');
+
+    for (var i = 0; i < btns.childNodes.length; i++) {
+        var  str = btns.childNodes[i].outerHTML;
+        if(str){
+            str = str.match(/onclick=\"setlang\(\'(.*?)\'\,/);
+            if(str.length>1 && str[1] === Translater.lang_name){
+                btns.childNodes[i].className = 'btn active'
+            }else{
+                btns.childNodes[i].className = 'btn'
+            }
+        }
+    }
+
+    function setlang(name,self){
+        Translater.setLang(name);
+        var btns = self.parentNode.children;
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].className = 'btn';
+        }
+        self.className = 'btn active';
+    }
+</script>
+
+</body>
+</html>
